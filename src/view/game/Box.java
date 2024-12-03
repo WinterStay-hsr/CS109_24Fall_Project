@@ -4,6 +4,10 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
+/**
+ * 作用：表示游戏中箱子元素
+ * 功能：绘制箱子，并提供其值
+ */
 public class Box extends JComponent {
     private final int value = 10;
 

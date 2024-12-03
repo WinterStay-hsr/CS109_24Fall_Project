@@ -20,6 +20,7 @@ public class GameController {
         view.setController(this);
     }
 
+    //这里看似需要实现一个方法使得可以restart游戏
     public void restartGame() {
         System.out.println("Do restart game here");
     }
@@ -47,5 +48,6 @@ public class GameController {
     }
 
     //todo: add other methods such as loadGame, saveGame...
+    //todo: 还有回溯功能，可以实现一个栈，每次移动的时候将当前的状态压入栈中，当用户点击回溯的时候，将栈顶的状态弹出，然后重新绘制
 
 }

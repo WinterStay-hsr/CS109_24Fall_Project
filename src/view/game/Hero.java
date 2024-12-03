@@ -3,6 +3,10 @@ package view.game;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * 作用：表示游戏中的玩家角色
+ * 功能：绘制玩家的图形，并提供其位置（行、列）
+ */
 public class Hero extends JComponent {
     private int row;
     private int col;

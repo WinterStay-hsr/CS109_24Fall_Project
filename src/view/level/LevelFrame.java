@@ -7,6 +7,7 @@ import view.game.GameFrame;
 import javax.swing.*;
 import java.awt.*;
 
+////可以参考GameFrame的文件理解本文件的内容
 public class LevelFrame extends JFrame {
 
     public LevelFrame(int width, int height) {

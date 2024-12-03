@@ -6,7 +6,7 @@ import view.level.LevelFrame;
 import javax.swing.*;
 import java.awt.*;
 
-
+//可以参考GameFrame的文件理解本文件的内容
 public class LoginFrame extends JFrame {
     private JTextField username;
     private JTextField password;

@@ -14,7 +14,7 @@ import java.awt.*;
  */
 public class GamePanel extends ListenerPanel {
 
-    private GridComponent[][] grids;
+    private GridComponent[][] grids; 
     private MapMatrix model;
     private GameController controller;
     private JLabel stepLabel;
