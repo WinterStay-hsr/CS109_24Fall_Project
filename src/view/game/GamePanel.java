@@ -12,6 +12,7 @@ import java.awt.*;
  * It is the subclass of ListenerPanel, so that it should implement those four methods: do move left, up, down ,right.
  * The class contains a grids, which is the corresponding GUI view of the matrix variable in MapMatrix.
  */
+//todo: display the level number in the game panel (fundamental part)
 public class GamePanel extends ListenerPanel {
 
     private GridComponent[][] grids; 
@@ -45,6 +46,36 @@ public class GamePanel extends ListenerPanel {
                 //Ten digit maps to Box or Hero in corresponding location in the GridComponent. (Changed value)
                 switch (model.getId(i, j) / 10) {
                     case 1:
+                        //Ten digit 1 represents the box
+                        grids[i][j].setBoxInGrid(new Box(GRID_SIZE - 10, GRID_SIZE - 10));
+                        break;
+                    case 2:
+                        //Ten digit 2 represents the hero/player
+                        this.hero = new Hero(GRID_SIZE - 16, GRID_SIZE - 16, i, j);
+                        grids[i][j].setHeroInGrid(hero);
+                        break;
+                }
+                //Add the GridComponent to the GamePanel,建立副组件与主组件之间的关系
+                this.add(grids[i][j]);
+            }
+        }
+        this.repaint(); //Repaint the GamePanel
+    }
+
+    public void restartGame() {
+        this.steps = 0;
+        this.stepLabel.setText(String.format("Step: %d", this.steps));
+        //todo:move all the hero and boxes and paint them at the initial position
+        for (int i = 0; i < grids.length; i++) {
+            for (int j = 0; j < grids[i].length; j++){
+                if (grids[i][j].getBox() != null) {
+                    grids[i][j].removeBoxFromGrid();
+                }
+                if (grids[i][j].getHero() != null) {
+                    grids[i][j].removeHeroFromGrid();
+                }
+                switch(model.getId(i, j) / 10) {
+                    case 1:
                         grids[i][j].setBoxInGrid(new Box(GRID_SIZE - 10, GRID_SIZE - 10));
                         break;
                     case 2:
@@ -52,10 +83,9 @@ public class GamePanel extends ListenerPanel {
                         grids[i][j].setHeroInGrid(hero);
                         break;
                 }
-                this.add(grids[i][j]);
             }
         }
-        this.repaint();
+
     }
 
     @Override

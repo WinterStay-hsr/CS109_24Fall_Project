@@ -6,12 +6,14 @@ import java.awt.*;
 import controller.GameController;
 import model.MapMatrix;
 import view.FrameUtil;
+import view.level.LevelFrame;
 
 public class GameFrame extends JFrame {
 
     private GameController controller;
     private JButton restartBtn;
     private JButton loadBtn;
+    private JButton returnBtn;
 
     private JLabel stepLabel;
     private GamePanel gamePanel;
@@ -29,7 +31,8 @@ public class GameFrame extends JFrame {
 
         //使用 FrameUtil 工具类创建了重新开始和加载游戏的按钮，并配置了动作监听器以处理按钮点击事件
         this.restartBtn = FrameUtil.createButton(this, "Restart", new Point(gamePanel.getWidth() + 80, 120), 80, 50);
-        this.loadBtn = FrameUtil.createButton(this, "Load", new Point(gamePanel.getWidth() + 80, 210), 80, 50);
+        this.loadBtn = FrameUtil.createButton(this, "Load", new Point(gamePanel.getWidth() + 80, 300), 80, 50);
+        this.returnBtn = FrameUtil.createButton(this, "Return", new Point(gamePanel.getWidth() + 80, 210), 80, 50);
 
         /*创建了一个 JLabel 来显示游戏的当前步骤或状态。这个标签也相对于 GamePanel 进行定位，并添加到窗口中。
          *GamePanel 被设置为根据需要更新此标签。*/
@@ -41,8 +44,16 @@ public class GameFrame extends JFrame {
             gamePanel.requestFocusInWindow();//enable key listener
         });
         this.loadBtn.addActionListener(e -> {
-            String string = JOptionPane.showInputDialog(this, "Input path:");
-            System.out.println(string);
+            String path = JOptionPane.showInputDialog(this, "Input path:");
+            /*一些可能的弹窗
+             *JOptionPane.showInputDialog(this, "Load from " + string);
+             *JOptionPane.showConfirmDialog(this, "Load successfully!");
+             */
+            LevelFrame.getFrameController().loadGame(path, this);
+            // gamePanel.requestFocusInWindow();//enable key listener
+        });
+        this.returnBtn.addActionListener(e -> {
+            LevelFrame.getFrameController().returnLevelFrame(this);
             gamePanel.requestFocusInWindow();//enable key listener
         });
         //todo: add other button here such as load, save, back, (up, down, left, right) through mouseclick...

@@ -1,5 +1,6 @@
 package view.level;
 
+import controller.FrameController;
 import model.MapMatrix;
 import view.FrameUtil;
 import view.game.GameFrame;
@@ -8,7 +9,9 @@ import javax.swing.*;
 import java.awt.*;
 
 ////可以参考GameFrame的文件理解本文件的内容
+//todo: complex the level frame with more levels(easy but advanced part)
 public class LevelFrame extends JFrame {
+    private static FrameController frameController = new FrameController();
 
     public LevelFrame(int width, int height) {
         this.setTitle("Level");
@@ -44,10 +47,14 @@ public class LevelFrame extends JFrame {
             gameFrame.setVisible(true);
         });
 
-        //todo: complete all level.
-
+        //todo: complete all level, including level button and corresponding mapMatrix
+        frameController.setLevelFrame(this);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    public static FrameController getFrameController() {
+        return frameController;
     }
 
 }

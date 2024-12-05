@@ -21,20 +21,24 @@ public class GridComponent extends JComponent {
     }
 
     @Override
+    //Paint the basic grid component including wall, free space and target location.
     public void paintComponent(Graphics g) {
         super.printComponents(g);
         Color borderColor = color;
         switch (id % 10) {
             case 1:
+                //1 represents the wall
                 g.setColor(Color.LIGHT_GRAY);
                 g.fillRect(0, 0, getWidth(), getHeight());
                 borderColor = Color.DARK_GRAY;
                 break;
             case 0:
+                //0 represents the free space
                 g.setColor(Color.WHITE);
                 g.fillRect(0, 0, getWidth(), getHeight());
                 break;
             case 2:
+                //2 represents the target location
                 g.setColor(Color.WHITE);
                 g.fillRect(0, 0, getWidth(), getHeight());
                 g.setColor(Color.GREEN);
@@ -67,6 +71,22 @@ public class GridComponent extends JComponent {
 
     public int getId() {
         return id;
+    }
+
+    public Hero getHero() {
+        return hero;
+    }
+
+    public void setHero(Hero hero) {
+        this.hero = hero;
+    }
+
+    public Box getBox() {
+        return box;
+    }
+
+    public void setBox(Box box) {
+        this.box = box;
     }
 
     //When adding a hero in this grid, invoking this method.

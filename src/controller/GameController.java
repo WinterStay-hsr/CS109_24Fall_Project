@@ -2,6 +2,7 @@ package controller;
 
 import model.Direction;
 import model.MapMatrix;
+import view.game.Box;
 import view.game.GamePanel;
 import view.game.GridComponent;
 import view.game.Hero;
@@ -20,9 +21,10 @@ public class GameController {
         view.setController(this);
     }
 
-    //这里看似需要实现一个方法使得可以restart游戏
     public void restartGame() {
         System.out.println("Do restart game here");
+        this.model.resetMapMatrix();
+        this.view.restartGame();
     }
 
     public boolean doMove(int row, int col, Direction direction) {
@@ -43,6 +45,28 @@ public class GameController {
             h.setRow(tRow);
             h.setCol(tCol);
             return true;
+        } else if (map[tRow][tCol] / 10 == 1) {
+            int boxTRow = tRow + direction.getRow();
+            int boxTCol = tCol + direction.getCol();
+            GridComponent boxTargetGrid = view.getGridComponent(boxTRow, boxTCol);
+            if (map[boxTRow][boxTCol] == 0 || map[boxTRow][boxTCol] == 2) {
+                //update hero in MapMatrix
+                model.getMatrix()[row][col] -= 20;
+                model.getMatrix()[tRow][tCol] += 20;
+                //update box in MapMatrix
+                model.getMatrix()[tRow][tCol] -= 10;
+                model.getMatrix()[boxTRow][boxTCol] += 10;
+                //Update hero in GamePanel
+                Hero h = currentGrid.removeHeroFromGrid();
+                targetGrid.setHeroInGrid(h);
+                //Update the box in GamePanel
+                Box b = targetGrid.removeBoxFromGrid();
+                boxTargetGrid.setBoxInGrid(b);
+                //Update the row and column attribute in hero
+                h.setRow(tRow);
+                h.setCol(tCol);
+                return true;
+            }
         }
         return false;
     }
