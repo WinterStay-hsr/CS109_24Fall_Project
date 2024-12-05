@@ -65,7 +65,6 @@ public class GamePanel extends ListenerPanel {
     public void restartGame() {
         this.steps = 0;
         this.stepLabel.setText(String.format("Step: %d", this.steps));
-        //todo:move all the hero and boxes and paint them at the initial position
         for (int i = 0; i < grids.length; i++) {
             for (int j = 0; j < grids[i].length; j++){
                 if (grids[i][j].getBox() != null) {
@@ -123,6 +122,9 @@ public class GamePanel extends ListenerPanel {
     public void afterMove() {
         this.steps++;
         this.stepLabel.setText(String.format("Step: %d", this.steps));
+        if (controller.checkVictory(this.model)) {
+            JOptionPane.showMessageDialog(this, "You Win!", "Victory", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     public void setStepLabel(JLabel stepLabel) {

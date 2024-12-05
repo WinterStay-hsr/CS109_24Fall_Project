@@ -23,9 +23,9 @@ public class LevelFrame extends JFrame {
         level1Btn.addActionListener(l->{
             MapMatrix mapMatrix = new MapMatrix(new int[][]{
                     {1, 1, 1, 1, 1, 1},
-                    {1, 0, 0, 0, 0, 1},
-                    {1, 0, 20, 12, 0, 1},
-                    {1, 0, 10, 2, 0, 1},
+                    {1, 20, 0, 0, 0, 1},
+                    {1, 0, 0, 10, 2, 1},
+                    {1, 0, 2, 10, 0, 1},
                     {1, 1, 1, 1, 1, 1},
             });
             GameFrame gameFrame = new GameFrame(600, 450, mapMatrix);

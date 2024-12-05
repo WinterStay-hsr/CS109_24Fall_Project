@@ -7,8 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 
 //可以参考GameFrame的文件理解本文件的内容
-//todo: design a guest mode BOTTOM for the game(fundamental part)
 //todo: Add a window for user information verification(advanced part)
+//todo: Add a button to jump to the registration window(advanced part)
+//todo: When click the Confirm button, jump to the LevelFrame and load the User Archive
 public class LoginFrame extends JFrame {
     private JTextField username;
     private JTextField password;
